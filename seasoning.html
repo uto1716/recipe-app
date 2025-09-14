@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>調味料管理 - 料理レシピアプリ</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="seasoning.css">
+</head>
+<body>
+    <header>
+        <h1>🧂 調味料管理</h1>
+        <div class="header-actions">
+            <a href="index.html" class="btn-secondary">レシピ一覧へ</a>
+            <button id="addSeasoningBtn" class="btn-primary">調味料を追加</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- フィルターセクション -->
+        <div class="filter-section">
+            <button class="filter-btn active" data-filter="all">すべて</button>
+            <button class="filter-btn" data-filter="expired">期限切れ</button>
+            <button class="filter-btn" data-filter="warning">期限間近</button>
+            <button class="filter-btn" data-filter="safe">期限まで余裕</button>
+        </div>
+
+        <!-- 統計情報 -->
+        <div class="stats-section">
+            <div class="stat-card expired-stat">
+                <div class="stat-number" id="expiredCount">0</div>
+                <div class="stat-label">期限切れ</div>
+            </div>
+            <div class="stat-card warning-stat">
+                <div class="stat-number" id="warningCount">0</div>
+                <div class="stat-label">期限間近</div>
+            </div>
+            <div class="stat-card safe-stat">
+                <div class="stat-number" id="safeCount">0</div>
+                <div class="stat-label">期限まで余裕</div>
+            </div>
+            <div class="stat-card total-stat">
+                <div class="stat-number" id="totalCount">0</div>
+                <div class="stat-label">合計</div>
+            </div>
+        </div>
+
+        <!-- 調味料一覧 -->
+        <div id="seasoningList" class="seasoning-list">
+            <!-- 調味料カードがここに表示されます -->
+        </div>
+    </main>
+
+    <!-- 調味料追加・編集モーダル -->
+    <div id="seasoningModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">調味料を追加</h2>
+
+            <form id="seasoningForm">
+                <div class="form-group">
+                    <label for="seasoningName">調味料名:</label>
+                    <input type="text" id="seasoningName" required placeholder="例: 醤油、味噌、オリーブオイル">
+                </div>
+
+                <div class="form-group">
+                    <label for="seasoningCategory">カテゴリ:</label>
+                    <select id="seasoningCategory" required>
+                        <option value="">選択してください</option>
+                        <option value="液体調味料">液体調味料</option>
+                        <option value="粉末・顆粒">粉末・顆粒</option>
+                        <option value="ペースト">ペースト</option>
+                        <option value="油">油</option>
+                        <option value="香辛料">香辛料</option>
+                        <option value="その他">その他</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="expiryDate">賞味期限:</label>
+                    <input type="date" id="expiryDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="openedDate">開封日（任意）:</label>
+                    <input type="date" id="openedDate">
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">残量:</label>
+                    <select id="quantity">
+                        <option value="100">満タン (100%)</option>
+                        <option value="75">3/4 (75%)</option>
+                        <option value="50">半分 (50%)</option>
+                        <option value="25">1/4 (25%)</option>
+                        <option value="10">残りわずか (10%)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">保管場所:</label>
+                    <input type="text" id="location" placeholder="例: 冷蔵庫、調味料棚、パントリー">
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">メモ:</label>
+                    <textarea id="notes" rows="3" placeholder="例: 料理に使う頻度、特別な保存方法など"></textarea>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn-primary">保存</button>
+                    <button type="button" id="cancelBtn" class="btn-secondary">キャンセル</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="seasoning.js"></script>
+</body>
+</html>
