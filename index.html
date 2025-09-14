@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>料理レシピアプリ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>🍳 料理レシピアプリ</h1>
+        <button id="addRecipeBtn" class="btn-primary">新しいレシピを追加</button>
+    </header>
+
+    <main>
+        <!-- 検索・フィルター機能 -->
+        <div class="search-section">
+            <input type="text" id="searchInput" placeholder="レシピを検索...">
+            <select id="categoryFilter">
+                <option value="">全てのカテゴリ</option>
+                <option value="和食">和食</option>
+                <option value="洋食">洋食</option>
+                <option value="中華">中華</option>
+                <option value="デザート">デザート</option>
+                <option value="その他">その他</option>
+            </select>
+        </div>
+
+        <!-- レシピ一覧 -->
+        <div id="recipeList" class="recipe-list">
+            <!-- レシピカードがここに表示されます -->
+        </div>
+    </main>
+
+    <!-- レシピ追加・編集モーダル -->
+    <div id="recipeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">新しいレシピを追加</h2>
+            
+            <form id="recipeForm">
+                <div class="form-group">
+                    <label for="recipeName">レシピ名:</label>
+                    <input type="text" id="recipeName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="recipeCategory">カテゴリ:</label>
+                    <select id="recipeCategory" required>
+                        <option value="">選択してください</option>
+                        <option value="和食">和食</option>
+                        <option value="洋食">洋食</option>
+                        <option value="中華">中華</option>
+                        <option value="デザート">デザート</option>
+                        <option value="その他">その他</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cookingTime">調理時間（分）:</label>
+                    <input type="number" id="cookingTime" min="1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="servings">人数:</label>
+                    <input type="number" id="servings" min="1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="ingredients">材料（1行に1つずつ）:</label>
+                    <textarea id="ingredients" rows="5" placeholder="例：&#10;鶏胸肉 300g&#10;玉ねぎ 1個&#10;にんじん 1本"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="instructions">作り方（1行に1ステップずつ）:</label>
+                    <textarea id="instructions" rows="6" placeholder="例：&#10;1. 鶏肉を一口大に切る&#10;2. 野菜を切る&#10;3. フライパンで炒める"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">メモ・コツ:</label>
+                    <textarea id="notes" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="recipeImage">料理の写真:</label>
+                    <input type="file" id="recipeImage" accept="image/*">
+                    <div id="imagePreview" class="image-preview"></div>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn-primary">保存</button>
+                    <button type="button" id="cancelBtn" class="btn-secondary">キャンセル</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
